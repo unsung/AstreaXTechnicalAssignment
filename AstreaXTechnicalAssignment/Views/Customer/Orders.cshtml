@@ -1,0 +1,51 @@
+﻿@model AstreaXTechnicalAssignment.Models.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-start">
+    <h1 class="display-4">Orders</h1>
+</div>
+
+<!-- Customer Info -->
+<div class="row">
+    <div class="col">
+        <b>Name</b>
+    </div>
+    <div class="col">
+        <b>Customer &num;</b>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @Model.FullName
+    </div>
+    <div class="col">
+        @Model.CustomerNumber
+    </div>
+</div>
+
+<!-- Order List-->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Order Id</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Item Description</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <!-- Paginated Orders -->
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.OrderDate</td>
+                <td>@order.Description</td>
+                <td>@String.Format(new CultureInfo("en-US"), "{0:C}", @order.Total)</td>
+            </tr>
+        }
+    </tbody>
+</table>
